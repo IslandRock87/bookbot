@@ -10,30 +10,40 @@ def get_book_text(path):
 
 def main():
     # Get text from file in small letters"
-    path_to_file = "/home/oysk/arbeid/github/bookbot/books/frankenstein.txt"
-    text = get_book_text(path_to_file)
+    import sys
+    if len(sys.argv) != 2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+    else:
+        path_to_file = sys.argv[1] 
+        text = get_book_text(path_to_file) 
+
+        # Count words
+
+        c = word_count(text)
+
+        # Count characters
+        d = num_char(text)
+
+        # Sort characters
+        f = sort_characters(d)
+
+        # Print results
+        print("============ BOOKBOT ============")
+        print("Analyzing book found at books/frankenstein.txt...")
+        print("----------- Word Count ----------")
+        print(f"Found {c} total words")
+        print("----------- Character Count ----------")
+        for char, count in f:
+            if char.isalpha():
+                print(f"{char}: {count}")
+        print("============= END ===============") 
+    
+    
+    
 
 
-    # Count words
-    c = word_count(text)
-
-    # Count characters
-    d = num_char(text)
-
-    # Sort characters
-    f = sort_characters(d)
-
-    #print("Word count: ", c)
-    #print(d)
-    print("============ BOOKBOT ============")
-    print("Analyzing book found at books/frankenstein.txt...")
-    print("----------- Word Count ----------")
-    print(f"Found {c} total words")
-    print("----------- Character Count ----------")
-    for char, count in f:
-        if char.isalpha():
-            print(f"{char}: {count}")
-    print("============= END ===============")
+    
 
 
 main()
